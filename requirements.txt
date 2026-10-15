@@ -1,1 +1,7 @@
-test
+# 复现 Card & Krueger (1994) 所需依赖
+# 版本以 Phase 4 最终锁定为准；statsmodels/scipy 将在 Phase 3 安装验证。
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+statsmodels>=0.14
+scipy>=1.11
