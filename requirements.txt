@@ -1,5 +1,5 @@
 # Dependencies for replicating Card & Krueger (1994).
-# Versions will be pinned in Phase 4; statsmodels/scipy will be installed and verified in Phase 3.
+# Verified on Python 3.15.0 (exact versions pinned in Phase 4).
 pandas>=2.0
 numpy>=1.24
 matplotlib>=3.7
