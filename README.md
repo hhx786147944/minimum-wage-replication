@@ -1,134 +1,134 @@
-# 最低工资与就业：Card & Krueger (1994) DID 复现项目
+# Minimum Wages and Employment: Replication of Card & Krueger (1994)
 
-> 课程项目 · ECO6067 · Difference-in-Differences 实证复现
+> Course project · ECO6067 · Difference-in-Differences empirical replication
 
-## 1. 论文引用
+## 1. Paper citation
 
 Card, D., & Krueger, A. B. (1994). Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania. *American Economic Review*, 84(4), 772–793.
 
-## 2. 研究背景、研究问题与主要假设
+## 2. Background, research question, and hypotheses
 
-### 研究背景
-传统（新古典）劳动经济学理论认为，竞争性劳动力市场中最低工资高于均衡工资会导致企业减少雇佣（劳动力需求向下倾斜）。1992 年 4 月 1 日，新泽西州（NJ）将最低工资从 $4.25 上调至 $5.05，而相邻的宾夕法尼亚州东部（eastern Pennsylvania）仍维持联邦最低工资 $4.25。这一政策变化构成了一个近似的“自然实验”，使得可以用双重差分方法直接检验最低工资对就业的因果效应。
+### Background
+Standard (neoclassical) labor theory predicts that, in a competitive labor market, a minimum wage above the equilibrium wage reduces hiring (a downward-sloping labor demand curve). On April 1, 1992, New Jersey (NJ) raised its minimum wage from $4.25 to $5.05, while neighboring eastern Pennsylvania (PA) kept the federal minimum wage of $4.25. This policy change created a quasi-natural experiment that allows the causal effect of the minimum wage on employment to be tested with a difference-in-differences design.
 
-### 研究问题
-**最低工资上调是否减少了低工资快餐行业的就业？**
+### Research question
+**Did the minimum-wage increase reduce employment in the low-wage fast-food industry?**
 
-### 主要假设
-- **待检验的零假设（传统理论预测）**：最低工资上调会降低就业（处理组 NJ 的相对就业下降）。
-- **论文实际发现（将用数据复现验证）**：论文未发现最低工资上调减少就业的证据，反而在若干就业口径上观察到 NJ 相对 PA 的就业增长。
+### Hypotheses
+- **Null hypothesis under test (conventional prediction)**: the minimum-wage increase reduces employment (a relative employment decline in the treated state, NJ).
+- **The paper's actual finding (to be verified by replication)**: the paper finds no evidence that the minimum-wage increase reduced employment, and even reports relative employment *gains* in NJ versus PA on several employment measures.
 
-## 3. 研究设计
+## 3. Research design
 
-- **处理组（Treatment）**：新泽西州快餐店——最低工资由 $4.25 上调至 $5.05。
-- **对照组（Control）**：宾夕法尼亚州东部快餐店——最低工资维持在 $4.25 不变。
-- **时间维度**：两波电话调查，第一波（政策前，1992 年 2–3 月）与第二波（政策后，1992 年 11–12 月）。
-- **样本**：Burger King、KFC、Roy Rogers、Wendy's 四家连锁品牌的门店调查，共约 410 家门店（第一波）。
+- **Treatment group**: New Jersey fast-food restaurants — minimum wage raised from $4.25 to $5.05.
+- **Control group**: eastern Pennsylvania fast-food restaurants — minimum wage unchanged at $4.25.
+- **Time dimension**: two waves of a telephone survey — wave 1 (before, Feb–Mar 1992) and wave 2 (after, Nov–Dec 1992).
+- **Sample**: a survey of restaurants from four chains (Burger King, KFC, Roy Rogers, Wendy's), roughly 410 stores in wave 1.
 
-选择“宾州东部”作为对照组的理由：地理位置与 NJ 相邻、劳动力市场与生活成本相近，但未受本次最低工资上调影响。
+Rationale for using eastern Pennsylvania as the control: it is geographically adjacent to NJ with a similar labor market and cost of living, but was not affected by this minimum-wage increase.
 
-## 4. DID 方法的基本解释
+## 4. Basic explanation of the DID method
 
-双重差分（Difference-in-Differences, DID）通过比较“处理组政策前后的变化”与“对照组同一时期的变化”，剔除共同时间趋势，识别政策的因果效应：
+Difference-in-differences (DID) identifies the causal effect of the policy by comparing the before–after change in the treatment group with the before–after change in the control group, thereby removing the common time trend:
 
 ```
 DID = (NJ_after − NJ_before) − (PA_after − PA_before)
 ```
 
-- 第一项是 NJ 就业的平均变化，第二项是 PA 就业的平均变化（作为反事实趋势的代理）。
-- 在回归框架中，等价于对“处理组指示变量 × 政策后指示变量”的交互项做 OLS 估计。
-- **核心识别假设**：平行趋势（parallel trends）——若没有最低工资上调，NJ 与 PA 的就业本应遵循相同的时间趋势。
+- The first term is the average employment change in NJ; the second is the average employment change in PA (used as a proxy for the counterfactual trend).
+- In a regression framework this is equivalent to an OLS estimate of the interaction term "treatment indicator × post-policy indicator".
+- **Core identifying assumption**: parallel trends — absent the minimum-wage increase, employment in NJ and PA would have followed the same time path.
 
-## 5. 复现目标（对应原论文）
+## 5. Replication targets (per the original paper)
 
-> 标题内容已从论文 PDF 原文核对，非凭记忆。
+> The table/figure contents below were verified against the paper's PDF text, not from memory.
 
-| 目标 | 内容 |
+| Target | Content |
 |---|---|
-| **Table 2** | 关键变量的均值描述（按 NJ / PA 分组，含均值相等检验的 t 统计量；含门店按连锁品牌与直营/加盟的分布）。 |
-| **Table 3** | 最低工资上调前后每店平均就业（水平值与变化量；全职工、兼职工、经理、总就业、FTE 就业等口径）。 |
-| **Table 4** | 就业变化的简约式（reduced-form）DID 回归估计，含不同规格（是否含连锁/直营等控制变量、样本口径等）。 |
-| **Figure 1** | 起薪（starting wage）分布（政策前后 NJ 的起薪分布变化）。 |
+| **Table 2** | Means of key variables, reported separately for NJ and PA, with t-statistics for the null that the means are equal across states (including the distribution of stores by chain and company-owned vs. franchisee). |
+| **Table 3** | Average employment per store before and after the rise in the NJ minimum wage (levels and changes; full-time, part-time, managers, total employment, and FTE employment). |
+| **Table 4** | Reduced-form DID regression models for the change in employment, across specifications (with/without controls such as chain dummies and company-owned indicator, and across sample definitions). |
+| **Figure 1** | Distribution of starting wage rates (change in the NJ starting-wage distribution around the increase). |
 
-**关键口径（论文脚注原文）**：
-- 全职当量（FTE）就业 = 全职工人数（含经理）+ 0.5 × 兼职工人数。
-- 第二波就业：永久停业门店设为 0；临时停业门店视为缺失（missing）。
+**Key definitions (from the paper's footnotes):**
+- Full-time-equivalent (FTE) employment = full-time workers (including managers) + 0.5 × part-time workers.
+- Wave-2 employment: set to 0 for permanently closed stores; treated as missing for temporarily closed stores.
 
-## 6. 数据来源、获取说明与合规限制
+## 6. Data source, access, and compliance restrictions
 
-- **数据文件**：`public.csv`（课程 Package 01，DID 项目专用；410 观测 × 46 列）。
-- **变量说明**：见数据包内 `DATA_DICTIONARY.md`（`STATE=1` 为 NJ、`0` 为 PA；`EMPFT/EMPPT/NMGRS` 及后缀 `2` 的第二波变量等）。
-- **获取方式**：数据由课程提供，**本项目不提供下载链接**。运行前请将 `public.csv` 放入 `data/` 目录（路径见目录结构）。
-- **合规限制（重要）**：课程数据仅限本课程项目使用。**原始数据不提交到公开 GitHub 仓库**，通过 `.gitignore` 排除，仅在本地保留。请遵守课程数据使用条款。
+- **Data file**: `public.csv` (course Package 01, DID project; 410 observations × 46 columns).
+- **Variable documentation**: see `DATA_DICTIONARY.md` inside the data package (`STATE=1` is NJ, `0` is PA; `EMPFT/EMPPT/NMGRS` and their wave-2 counterparts with suffix `2`, etc.).
+- **Access**: the data are provided by the course; **this repository provides no download link**. Before running, place `public.csv` into the `data/` directory (see directory structure).
+- **Compliance (important)**: the course data are for use in this course project only. **Raw data are not committed to the public GitHub repository** — they are excluded via `.gitignore` and kept locally only. Follow the course data-access terms.
 
-## 7. 项目目录结构
+## 7. Project directory structure
 
 ```
 minimum-wage-replication/
-├── README.md            # 本文件：项目说明与复现指引
-├── requirements.txt     # Python 依赖
-├── .gitignore           # 排除原始数据、.DS_Store、缓存等
-├── data/                # 原始数据（本地，gitignore，不提交）
-│   └── public.csv       # ← 运行前自行放入
-├── src/                 # 分析代码（Phase 3 实现）
-│   ├── config.py        # 路径与常量
-│   ├── load_data.py     # 数据加载与清洗
-│   ├── analysis.py      # 样本构造、变量定义、DID 估计
-│   ├── tables.py        # 生成 Table 2–4
-│   ├── figures.py       # 生成 Figure 1
-│   └── main.py          # 一键复现入口
-├── outputs/             # 生成的表格与图形
+├── README.md            # this file: project overview and reproduction guide
+├── requirements.txt     # Python dependencies
+├── .gitignore           # excludes raw data, .DS_Store, caches, etc.
+├── data/                # raw data (local only, gitignored, not committed)
+│   └── public.csv       # ← place here before running
+├── src/                 # analysis code (implemented in Phase 3)
+│   ├── config.py        # paths and constants
+│   ├── load_data.py     # data loading and cleaning
+│   ├── analysis.py      # sample construction, variable definitions, DID estimation
+│   ├── tables.py        # generates Tables 2–4
+│   ├── figures.py       # generates Figure 1
+│   └── main.py          # one-command reproduction entry point
+├── outputs/             # generated tables and figures
 │   ├── tables/
 │   └── figures/
-└── report/              # 报告、扩展分析、验证、AI 使用披露（Phase 4）
+└── report/              # report, extension analysis, validation, AI-use disclosure (Phase 4)
 ```
 
-> 说明：`data/`、`src/`、`outputs/`、`report/` 目录已建立；`src/`、`report/` 内容将在后续阶段生成，当前为空（未为凑目录而放置占位文件）。
+> Note: the `data/`, `src/`, `outputs/`, and `report/` directories already exist; `src/` and `report/` contents will be created in later phases and are currently empty (no placeholder files added just to populate directories).
 
-## 8. Python 环境与依赖
+## 8. Python environment and dependencies
 
-- **Python**：3.15.0（本机为唯一解释器）。
-- **已安装**：`pandas 3.0.6`、`numpy 2.5.4`、`matplotlib 3.11.2`。
-- **计划安装**（Phase 3 验证）：`statsmodels`（DID 回归 + 稳健/聚类标准误）、`scipy`。
-- 依赖清单见 `requirements.txt`（最终版本将在 Phase 4 锁定具体版本）。
+- **Python**: 3.15.0 (the only interpreter on this machine).
+- **Already installed**: `pandas 3.0.6`, `numpy 2.5.4`, `matplotlib 3.11.2`.
+- **Planned (to be verified in Phase 3)**: `statsmodels` (DID regressions with robust/clustered standard errors) and `scipy`.
+- Dependencies are listed in `requirements.txt` (final versions will be pinned in Phase 4).
 
-> 风险提示：Python 3.15 较新，`statsmodels`/`scipy` 是否有对应预编译 wheel 将在 Phase 3 安装时验证；若不可用，退路为使用更低版本 Python 的虚拟环境，或仅依赖 `numpy` 手写 OLS 与聚类标准误。
+> Risk note: Python 3.15 is relatively new, so whether `statsmodels`/`scipy` have prebuilt wheels for it will be verified when installing in Phase 3. Fallback options: a virtual environment on an older Python, or a `numpy`-only OLS + clustered-SE implementation.
 
-## 9. 运行方式（计划中，待 Phase 3 实现）
+## 9. How to run (planned; to be implemented in Phase 3)
 
-1. 将 `public.csv` 放入 `data/` 目录（不改文件名）。
-2. 安装依赖：`pip install -r requirements.txt`。
-3. 运行一键入口（计划命令，以最终实现为准）：
+1. Place `public.csv` into the `data/` directory (keep the filename unchanged).
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Run the entry point (planned command, subject to the final implementation):
    ```
    python src/main.py
    ```
-4. 程序自动生成 Table 2–4 与 Figure 1 到 `outputs/`，并输出与论文对比的摘要。
+4. The program generates Tables 2–4 and Figure 1 under `outputs/` and prints a comparison summary against the paper.
 
-## 10. 独立扩展分析——候选方向（待数据检查与方法论论证）
+## 10. Independent extension analysis — candidate directions (pending data checks and methodological justification)
 
-> 以下仅为**候选方向**，尚未实施，也未声称已完成；将在数据检查后选择一项并完成方法论论证。
+> The following are **candidates only** — not yet implemented, and not claimed as complete. One will be selected and fully justified after the data are inspected.
 
-1. **异质性 DID**：按连锁品牌（Burger King / KFC / Roy Rogers / Wendy's）或直营 vs 加盟分样本估计，考察最低工资效应的异质性。
-2. **价格传导**：最低工资上调是否传导至食品价格（原论文 Table 7 的 reduced-form 价格回归）。
-3. **起薪分布变化**：结合 Figure 1，刻画最低工资对起薪分布的压缩效应。
-4. **就业增长的分布/比例变化**：以就业变化比例（proportional change）为因变量的稳健性分析。
-5. **稳健性与安慰剂检验**：聚类标准误（州×时间或门店层级）、平衡 vs 非平衡样本、平行趋势讨论。
+1. **Heterogeneous DID**: estimate by chain (Burger King / KFC / Roy Rogers / Wendy's) or company-owned vs. franchisee, to study heterogeneity of the minimum-wage effect.
+2. **Price pass-through**: whether the minimum-wage increase was passed through to food prices (the reduced-form price regressions in the paper's Table 7).
+3. **Starting-wage distribution**: building on Figure 1, characterize the compression of the starting-wage distribution.
+4. **Proportional employment change**: robustness using the proportional change in employment as the dependent variable.
+5. **Robustness and placebo checks**: clustered standard errors (state×time or store level), balanced vs. unbalanced samples, and a discussion of parallel trends.
 
-## 11. 结果验证、局限性与 AI 使用披露（安排）
+## 11. Validation, limitations, and AI-use disclosure (planned)
 
-- **结果验证（待 Phase 3–4 实现）**：将复现数值与原论文打印表逐项对比，核对 FTE 定义、平衡样本口径与第二波缺失处理是否与论文一致；对差异给出解释，不强行“凑数”。
-- **研究局限（待 Phase 4 撰写）**：DID 的平行趋势假设无法完全检验、样本仅限四家快餐连锁的有限地区、电话调查的缺失/拒访处理、工资变量在 NJ 第一波为空的问卷设计等。
-- **AI 使用披露（贯穿全程，Phase 4 定稿）**：在报告或 README 的专门章节说明 AI 参与了哪些工作（数据检查、代码脚手架、文本起草）、输出如何核验（与论文逐项比对、代码审查、运行自检），以及哪些 AI 建议被修正或拒绝。**本 README 本身即为 AI 辅助撰写，关键事实（论文信息、复现目标、FTE 定义等）已从论文 PDF 原文核对。**
+- **Validation (to be implemented in Phases 3–4)**: compare reproduced numbers item-by-item against the paper's printed tables; verify the FTE definition, balanced-sample definition, and wave-2 missing-data handling against the paper; explain any discrepancies rather than forcing exact matches.
+- **Limitations (to be written in Phase 4)**: the parallel-trends assumption cannot be fully tested; the sample is limited to four fast-food chains in a limited region; telephone-survey nonresponse/refusal handling; the questionnaire design in which starting wage is blank for NJ stores in wave 1.
+- **AI-use disclosure (maintained throughout; finalized in Phase 4)**: a dedicated section in the report (and/or README) will state which work AI contributed to (data checks, code scaffolding, drafting), how outputs were verified (item-by-item comparison with the paper, code review, runtime self-checks), and which AI suggestions were corrected or rejected. **This README was drafted with AI assistance; key facts (paper details, replication targets, FTE definition) were verified against the paper's PDF text.**
 
-## 12. 当前进度与未完成事项
+## 12. Current progress and remaining work
 
-- ✅ **Phase 1（本阶段）**：README 与项目说明、`.gitignore`、`requirements.txt` 已完成。
-- ⬜ **Phase 2（待进行）**：数据落位与结构检查（原始数据不入库）。
-- ⬜ **Phase 3（待进行）**：分析代码，复现 Table 2–4 与 Figure 1。
-- ⬜ **Phase 4（待进行）**：报告、扩展分析、验证、局限、AI 使用披露定稿与最终发布。
+- ✅ **Phase 1 (this phase)**: README and project overview, `.gitignore`, `requirements.txt` complete.
+- ⬜ **Phase 2 (next)**: data placement and structural checks (raw data not committed).
+- ⬜ **Phase 3**: analysis code reproducing Tables 2–4 and Figure 1.
+- ⬜ **Phase 4**: report, extension analysis, validation, limitations, AI-use disclosure finalization, and final release.
 
-## 13. 待确认事项（非既定事实）
+## 13. Items to confirm (not yet established facts)
 
-- **“四阶段上传”的目标平台**：数据文件的“上传”指向课程提交系统（LMS）而非公开 GitHub；原始数据始终不进入 GitHub。
-- Table 2–4 与 Figure 1 的**列/行口径**将以论文原文为准，Phase 3 写代码前再次核验。
-- 扩展分析的**最终选题**：待数据检查后确定（见第 10 节候选）。
+- **Target platform for the four-phase "uploads"**: the data-file "upload" refers to the course submission system (LMS), not the public GitHub repository; raw data never enter GitHub.
+- The exact **row/column definitions** of Tables 2–4 and Figure 1 will follow the paper and will be re-verified before writing code in Phase 3.
+- The **final choice of extension analysis**: to be determined after the data are inspected (see Section 10 candidates).

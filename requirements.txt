@@ -1,5 +1,5 @@
-# 复现 Card & Krueger (1994) 所需依赖
-# 版本以 Phase 4 最终锁定为准；statsmodels/scipy 将在 Phase 3 安装验证。
+# Dependencies for replicating Card & Krueger (1994).
+# Versions will be pinned in Phase 4; statsmodels/scipy will be installed and verified in Phase 3.
 pandas>=2.0
 numpy>=1.24
 matplotlib>=3.7
