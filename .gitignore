@@ -8,7 +8,8 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 
-# Course raw data (local only; not committed to the public repository)
+# Course data (local only; not committed to the public repository).
+# Covers data/raw/ (input) and data/processed/ (generated). *.csv is a safety net.
 data/
 *.csv
 
