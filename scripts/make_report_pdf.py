@@ -1,4 +1,4 @@
-"""Render report/report.md to report/report.pdf.
+"""Render report/report.md to report.pdf (at the repository root).
 
 A small, self-contained Markdown renderer for the constructs used in
 ``report/report.md``: headings, blockquotes, bullet/numbered lists, pipe tables,
@@ -11,7 +11,7 @@ Usage (from the project root)::
 
     python scripts/make_report_pdf.py
 
-Output: ``report/report.pdf``.
+Output: ``report.pdf`` (repository root).
 
 Note: the Arial font paths below are macOS system fonts. On other platforms,
 point ``FONT_*`` at any TTF faces covering the characters used in the report
@@ -25,7 +25,7 @@ from fpdf.fonts import FontFace
 
 ROOT = Path(__file__).resolve().parent.parent
 MD_PATH = ROOT / "report" / "report.md"
-OUT_PATH = ROOT / "report" / "report.pdf"
+OUT_PATH = ROOT / "report.pdf"
 
 FONT_REGULAR = "/System/Library/Fonts/Supplemental/Arial.ttf"
 FONT_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"

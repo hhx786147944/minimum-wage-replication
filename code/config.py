@@ -1,12 +1,12 @@
 """Central configuration: paths, policy constants, and column names.
 
-All paths are derived from the project root (the parent of this ``src/``
+All paths are derived from the project root (the parent of this ``code/``
 directory), so the code runs from any working directory without hard-coded,
 machine-specific absolute paths.
 """
 from pathlib import Path
 
-# Project root = parent of this src/ directory.
+# Project root = parent of this code/ directory.
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # --- Paths ---

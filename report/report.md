@@ -3,7 +3,7 @@
 > Course project · ECO6067 · Difference-in-Differences empirical replication
 >
 > **Reproducibility note.** Every number in this report is read from the output of the
-> single entry point `python src/main.py` (see `outputs/tables/*.csv` and
+> single entry point `python code/run_all.py` (see `outputs/tables/*.csv` and
 > `outputs/figures/*.png`). No result has been hand-edited to match the paper; the two
 > small residual discrepancies are reported explicitly in §9.
 
@@ -318,7 +318,7 @@ price results and does not overturn the employment findings.
 
 Beyond matching the paper, the pipeline was validated in three ways:
 
-1. **Reproducibility.** Deleting `outputs/` and re-running `python src/main.py`
+1. **Reproducibility.** Deleting `outputs/` and re-running `python code/run_all.py`
    regenerated all seven output files identically, confirming there are no hidden
    manual steps or order dependencies.
 2. **Data compliance.** The raw `public.csv` (SHA-256 `f29f3a8…`) is present locally at

@@ -2,11 +2,11 @@
 
 Run from the project root with::
 
-    python src/main.py
+    python code/run_all.py
 
 This loads and validates the data, reproduces Tables 2-4 and Figure 1, runs the
-price pass-through extension, and prints a summary comparing key estimates with
-the values printed in Card & Krueger (1994).
+price pass-through extension, persists the analysis-ready dataset, and prints a
+summary comparing key estimates with the values printed in Card & Krueger (1994).
 """
 import sys
 from pathlib import Path
@@ -89,6 +89,12 @@ def main():
     df = load_data.load_public_csv()
     df = analysis.add_derived_variables(df)
 
+    # 1b. Persist the analysis-ready (processed) dataset used by the regressions.
+    #     Kept local (gitignored) — it is a store-level transformation of the
+    #     course data, not an aggregate result.
+    config.PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+    df.to_csv(config.PROCESSED_DIR / "analysis_ready.csv", index=False)
+
     # 2. Reproduce Tables 2-4.
     t2 = tables.table2(df)
     t3 = tables.table3(df)
@@ -104,7 +110,8 @@ def main():
     print(f"\nNJ wage groups: {_wage_group_counts(df)}  [paper: 101 / 140 / 73]")
     _print_summary(t3, t4_results, t4_sample)
 
-    print("\nAll outputs written to outputs/tables/ and outputs/figures/.")
+    print("\nAll outputs written to outputs/tables/, outputs/figures/, and "
+          "data/processed/analysis_ready.csv.")
     return 0
 
 
