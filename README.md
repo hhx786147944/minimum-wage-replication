@@ -89,7 +89,7 @@ minimum-wage-replication/
 └── report/              # report, extension analysis, validation, AI-use disclosure (Phase 4)
 ```
 
-> Note: the `data/`, `src/`, `outputs/`, and `report/` directories already exist; `src/` and `report/` contents will be created in later phases and are currently empty (no placeholder files added just to populate directories).
+> Note: `src/` holds the analysis code and `report/` holds the Phase 4 deliverables; both are populated. `data/` and `outputs/` are generated/kept locally (`data/` is gitignored and never committed).
 
 ## 8. Python environment and dependencies
 
@@ -146,12 +146,15 @@ The reproduced values are compared item-by-item against the paper's printed tabl
 - **Table 4 model (v)** differs by ≈0.6% (coef 11.98 vs. 11.91; SE 7.42 vs. 7.39). The footnote's "two regions of New Jersey and two regions of eastern Pennsylvania" maps to `CENTRALJ`, `SOUTHJ`, `PA1`, `PA2` (North NJ omitted); the small residual likely reflects a subtle reference-category choice or minor data-version differences in region coding.
 - **Table 3 row 3 SE** is ≈4% below the paper's (1.31 vs. 1.36). Rows 1–2 and 4–5 match exactly, and the row-3 mean matches; the remaining SE gap is attributed to a slightly different (more conservative) formula for the unbalanced "all available" change in the original paper, or to minor differences in the stores outside the Table 4 sample. No code was adjusted to force this number.
 
-## 12. Current progress and remaining work
+## 12. Project status and Phase 4 deliverables
 
 - ✅ **Phase 1**: README and project overview, `.gitignore`, `requirements.txt`.
 - ✅ **Phase 2**: data placement and structural checks (`DATA_CHECK.md`); raw data not committed.
 - ✅ **Phase 3**: analysis code reproducing Tables 2–4 and Figure 1, result validation, and the price pass-through extension.
-- ⬜ **Phase 4**: final report (result comparison, extension write-up, limitations, AI-use disclosure) and final release.
+- ✅ **Phase 4**: final report, AI-use disclosure, and delivery checklist, in `report/`:
+  - `report/report.md` — empirical report (13 sections: research question, background, data, DID design, Tables 2–4 & Figure 1, comparison, extension, robustness, limitations, AI-use disclosure).
+  - `report/AI_DISCLOSURE.md` — standalone itemized AI-use disclosure.
+  - `report/DELIVERY_CHECKLIST.md` — final acceptance checklist (with the two documented residual discrepancies and the gitignored-CSV caveat flagged, not hidden).
 
 ## 13. Resolved items
 
