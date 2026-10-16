@@ -1,6 +1,8 @@
 # Minimum Wages and Employment: Replication of Card & Krueger (1994)
 
 > Course project · ECO6067 · Difference-in-Differences empirical replication
+>
+> Repository: <https://github.com/hhx786147944/minimum-wage-replication>
 
 ## 1. Paper citation
 
@@ -83,13 +85,17 @@ minimum-wage-replication/
 │   ├── figures.py       # generates Figure 1
 │   ├── extension.py     # price pass-through extension (Phase 3)
 │   └── main.py          # one-command reproduction entry point
-├── outputs/             # generated tables and figures
-│   ├── tables/
-│   └── figures/
+├── scripts/             # utility scripts
+│   └── make_report_pdf.py  # renders report/report.md -> report/report.pdf
+├── outputs/             # generated tables and figures (committed)
+│   ├── tables/          # Tables 2-4 + extension CSVs
+│   └── figures/         # Figure 1
 └── report/              # report, extension analysis, validation, AI-use disclosure (Phase 4)
+    ├── report.md        # empirical report (source)
+    └── report.pdf       # empirical report (PDF render)
 ```
 
-> Note: `src/` holds the analysis code and `report/` holds the Phase 4 deliverables; both are populated. `data/` and `outputs/` are generated/kept locally (`data/` is gitignored and never committed).
+> Note: `src/` holds the analysis code, `report/` holds the Phase 4 deliverables (Markdown source + PDF render), and `outputs/tables/` holds the generated result tables (all committed). `data/` is gitignored and never committed — the raw course data stays local only.
 
 ## 8. Python environment and dependencies
 
@@ -153,8 +159,19 @@ The reproduced values are compared item-by-item against the paper's printed tabl
 - ✅ **Phase 3**: analysis code reproducing Tables 2–4 and Figure 1, result validation, and the price pass-through extension.
 - ✅ **Phase 4**: final report, AI-use disclosure, and delivery checklist, in `report/`:
   - `report/report.md` — empirical report (13 sections: research question, background, data, DID design, Tables 2–4 & Figure 1, comparison, extension, robustness, limitations, AI-use disclosure).
+  - `report/report.pdf` — PDF render of the report (via `scripts/make_report_pdf.py`).
   - `report/AI_DISCLOSURE.md` — standalone itemized AI-use disclosure.
-  - `report/DELIVERY_CHECKLIST.md` — final acceptance checklist (with the two documented residual discrepancies and the gitignored-CSV caveat flagged, not hidden).
+  - `report/DELIVERY_CHECKLIST.md` — final acceptance checklist (the two residual discrepancies are flagged, not hidden).
+
+### Git history (four phases)
+
+| Commit | Phase | Content |
+|---|---|---|
+| `8688f7a` | 1 | `docs: add project README and research plan` |
+| `0fcf138` | 1 | `docs: translate project documentation to English` |
+| `8f5e7fc` | 2 | `data: document input data and validation checks` |
+| `f9f4754` | 3 | `feat: implement replication analysis and result validation` |
+| `4e588c3` | 4 | `docs: add final replication report and delivery materials` |
 
 ## 13. Resolved items
 

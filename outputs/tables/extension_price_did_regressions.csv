@@ -1,0 +1,21 @@
+outcome,model,coef,se,n
+Full meal (soda+fries+entree),NJ,0.1001,0.0492,356
+Full meal (soda+fries+entree),NJ + chain/owned,0.1105,0.0485,356
+Full meal (soda+fries+entree),GAP,0.3317,0.2602,341
+Full meal (soda+fries+entree),GAP + chain/owned,0.5347,0.2631,341
+Full meal (soda+fries+entree),GAP + chain/owned + region,0.3096,0.3205,341
+Medium soda,NJ,-0.0079,0.0086,380
+Medium soda,NJ + chain/owned,-0.0052,0.0084,380
+Medium soda,GAP,0.0413,0.0462,364
+Medium soda,GAP + chain/owned,0.0752,0.0453,364
+Medium soda,GAP + chain/owned + region,0.1441,0.0548,364
+Small fries,NJ,-0.0023,0.0091,366
+Small fries,NJ + chain/owned,-0.0009,0.0089,366
+Small fries,GAP,0.0254,0.0483,351
+Small fries,GAP + chain/owned,0.0528,0.0486,351
+Small fries,GAP + chain/owned + region,0.0734,0.0592,351
+Entree,NJ,0.0753,0.0455,375
+Entree,NJ + chain/owned,0.0878,0.0452,375
+Entree,GAP,0.1664,0.2428,359
+Entree,GAP + chain/owned,0.31,0.2472,359
+Entree,GAP + chain/owned + region,0.0631,0.2995,359

@@ -13,6 +13,9 @@ venv/
 data/
 *.csv
 
+# Generated result tables are aggregate outputs (not raw course data); commit them.
+!outputs/tables/*.csv
+
 # Secrets / environment variables
 .env
 *.env

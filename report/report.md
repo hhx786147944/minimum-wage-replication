@@ -197,7 +197,7 @@ increase*, not a decline.
 
 ## 7. Reproduction of Table 4 — reduced-form DID regressions
 
-Table 4 regresses the change in FTE employment (dFTE = FTE₂ − FTE₁) on the NJ dummy or
+Table 4 regresses the change in FTE employment (dFTE = FTE2 − FTE1, wave-2 minus wave-1) on the NJ dummy or
 on GAP. Reproduced coefficients (standard errors in parentheses; n = 357 throughout):
 
 | Model | NJ dummy | GAP | Chain/ownership | Region | Resid. SE |
